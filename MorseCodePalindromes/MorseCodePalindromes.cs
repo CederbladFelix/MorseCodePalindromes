@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MorseCodePalindromes
 {
@@ -54,24 +55,19 @@ namespace MorseCodePalindromes
             string trimmedInput = Regex.Replace(input.ToUpper(), "[^A-Z0-9]", "");
 
             Boolean isPalindrome = true;
-            Boolean containsLettersOrNumbers = true;
 
-            if (string.IsNullOrWhiteSpace(trimmedInput))
+            if (string.IsNullOrEmpty(trimmedInput))
             {
                 isPalindrome = false;
-                containsLettersOrNumbers = false;
             }
-
-            if (containsLettersOrNumbers)
+            else
             {
-                string morseCode = "";
+                StringBuilder morseCode = new StringBuilder();
 
                 foreach (char character in trimmedInput)
                 {
-                    morseCode = morseCode + morseMap[character];
+                    morseCode.Append(morseMap[character]);
                 }
-
-
 
                 for (int i = 0; i < morseCode.Length / 2; i++)
                 {
